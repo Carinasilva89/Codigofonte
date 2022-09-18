@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main (int argc,char*argv[])
+{
+     char nome[100];
+     char carro[100];
+     float valor;
+     int forma;
+     float desconto;
+     float valorpagar;
+     int parcelas;
+     float jurostotal;
+     float valorparcela;
+
+       printf("Nome do cliente:");
+       scanf ("%s",&nome);
+
+       printf ("Informe o Modelo do Carro:");
+       scanf ("%s",&carro);
+
+       printf ("Qual valor do Veiculo:");
+       scanf ("%f",&valor);
+
+       printf ("Forma de Pagamento:1-dinheiro, 2-cartao, 3-aprazo:");
+       scanf ("%d",&forma);
+
+     if (forma==1){
+
+       desconto=valor*0.1;
+       valorpagar=valor-desconto;
+
+        printf("o cliente:%s\n",nome);
+        printf("O Carro comprado :%s\n",carro);
+        printf("O total a pagar:%.2f\n",valorpagar);
+
+     }
+
+     if (forma==2){
+
+        desconto=valor*0.03;
+        valorpagar=valor-desconto;
+
+        printf("o cliente:%s\n",nome);
+        printf("O Carro comprado :%s\n",carro);
+        printf("O total a pagar:%.2f\n",valorpagar);
+
+     }
+
+     else if (forma==3){
+
+        printf ("Informe Quantas Parcelas deseja pagar:");
+        scanf("%d", & parcelas);
+
+        jurostotal=(parcelas*0.01)*valor;
+        valorparcela=(jurostotal+valor)/parcelas;
+        valorpagar=valorparcela*parcelas;
+
+
+        printf("o cliente:%s\n",nome);
+        printf("O Carro comprado :%s\n",carro);
+        printf("Valor Do Juros:%.2f\n",jurostotal);
+        printf("Valor das Parcelas:%.2f\n",valorparcela);
+        printf("Valor Total do carro:%0.2f\n",valorpagar);
+
+     }
+
+
+return 0;}
