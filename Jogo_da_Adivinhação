@@ -1,24 +1,28 @@
-include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 
 int main()
 {
     setlocale(LC_ALL,"portuguese");
-    
-    
+
+
     printf("-----------------------------------------------\n");
     printf("I    Bem Vindo Ao Jogo Da Adivinhação         I\n");
     printf("-----------------------------------------------\n");
 
-    int numerosecreto=42;
+    int segundos = time(0);
+    srand(segundos);
+
+    int numerogrande = rand();
+    int numerosecreto = numerogrande % 100;
 
     int chute;
     int ganhou=0;
     int tentativas=0;
 
     while(ganhou==0){
-
         printf("Tentativa %d\n", tentativas+1);
         printf("Qual é o seu chute?");
         scanf("%d", &chute);
