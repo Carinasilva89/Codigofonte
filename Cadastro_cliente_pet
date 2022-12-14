@@ -1,0 +1,115 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+int main(void){
+    int continuar,tipo,fone,cpf;
+    char nome[200],nascimento[20],estado[2],cidade[15],raca[20],animal[20],linha[40],*resultado;
+    char op='m';
+
+     while(op=='m'){
+           system("cls");
+           printf("Escolha uma opcao: ");
+           printf("\n\n1)Cadastro de cliente:\n2)Consultar Cadastro:\n3)Sair\n");
+           scanf("%d",&tipo);
+            if(tipo==3)
+               break;
+
+    FILE *file;
+    file = fopen("alunos.txt","a");
+        if (file == NULL){
+           printf("erro na abertura do arquivo");
+            return 1;
+        }
+
+    switch(tipo){
+    case 1:
+        do{
+           system("cls");
+           fflush(stdin);
+           printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+           printf("\xBA   CADASTRO DO CLIENTE  \xBA\n");
+           printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC");
+           printf("\n\xBA Nome:");
+           gets(nome);
+           fprintf (file,"%s\n",nome);
+           printf("\xBA CPF:");
+           scanf("%d",&cpf);
+           fprintf (file,"%d\n",cpf);
+           printf("\xBA Data de nascimento:");
+           scanf("%s", nascimento);
+           fprintf (file,"%s\n",nascimento);
+           printf("\xBA Telefone:");
+           scanf("%d",&fone);
+           fprintf (file,"%d\n",fone);
+           fflush(stdin);
+           printf("\xBA Cidade:");
+           gets(cidade);
+           fprintf (file,"%s\n",cidade);
+           printf("\xBA Estado:");
+           gets(estado);
+           fprintf (file,"%s\n",estado);
+           system("cls");
+           fflush(stdin);
+          //Adicionar PET
+           printf("Digite 1 para cadastrar PET ou 2 para voltar ao menu\n");
+           scanf("%d",&continuar);
+             if(continuar==2){
+                          op='m';
+              }
+                    else if(continuar==1){
+                        do{
+                           system("cls");
+                            fflush(stdin);
+                            printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+                            printf("\xBA  CADASTRO DO PET  \xBA\n");
+                            printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+                            printf("\n\xBA Nome do Pet:");
+                            gets(animal);
+                            fprintf (file,"%s\n",animal);
+                            printf("\xBA Raca do animal:");
+                            scanf("%d",&raca);
+                            fprintf (file,"%s\n",raca);
+                            printf("\nDigite (m) para voltar ao Menu ou (c) para CONTINUAR com outro cadastro...\n");
+                            fflush(stdin);
+                            op=getch();
+
+                         }
+                  while(op=='c');
+                    }
+                           fclose(file);
+                   }
+                  while(op=='c');
+                  continue;
+                  case 2:
+                    do{
+                          system("cls");
+                          fflush(stdin);
+                          printf("\xC9\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBB\n");
+                          printf("\xBA  CONSULTAR CADASTRO  \xBA\n");
+                          printf("\xC8\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xCD\xBC\n");
+
+    file = fopen("alunos.txt","r");//"r" para abrir o programa para leitura//
+    if (file == NULL){
+    printf("erro na abertura do arquivo!");
+    return 1;
+    }
+                  while(!feof(file)){ //ele nega o fim de arquivo//
+                           resultado=fgets(linha,40,file);
+                            if (resultado)
+                            printf("%s", linha);
+                         }
+
+                            fclose(file);
+
+                          printf("\nDigite (m) para voltar ao Menu ou (c) para CONTINUAR com outro cadastro...\n");
+
+                          op=getch();
+            }      while(op=='c');
+                   continue;
+
+      }
+
+    }
+
+}
